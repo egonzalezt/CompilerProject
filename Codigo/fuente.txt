@@ -1,0 +1,29 @@
+#integrantes
+#Esteban Gonzalez Tamayo
+#Emanuel Isaza Vera
+Programa
+    int a = 0;
+    int valor = 0;
+    int b,c,d,e,f;
+    String palabra = 'Hola esto es una cadena';
+    escribir (D,e,'0a');
+    leer(A,D,E,w);
+    para (int a = 12; hasta a > 2; a++)
+        si(b<a)
+            entonces
+                b = b + a;
+            sino
+                a = 0;
+        finsi
+    finpara
+
+    mientras(a!=200)
+        hacer
+            leer(A,D,E,w);
+            si(a==100)
+                entonces
+                    escribir (D,e,'0a');
+            finsi
+    finmientras
+
+FinPrograma

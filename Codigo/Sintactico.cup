@@ -1,0 +1,110 @@
+package com.company;
+
+import java_cup.runtime.*;
+
+/*
+ Integrates:
+ -Esteban Gonzalez Tamayo
+ -Emanuel Isaza Vera
+ */
+
+parser code {:
+    public String errsin="";
+    public void syntax_error (Symbol x){
+        errsin+="\n Syntax error en pos " + (x.left+1) + "," + (x.right+1);
+        throw new UnsupportedOperationException (errsin);
+    }
+:};
+
+terminal num,real,op_aritmetico,op_relacional,op_incremento,asig,id,pi,pd,ol,str,mientras,hacer,finmientras,pc,Programa,FinPrograma,si,finsi,entonces,sino,ent,com,pal,para,finpara,hasta,leer,escribir;
+non terminal I,E,T,EL,EA,IS,L,C,D,F,G,M,H,K,N,O,Q,W,U,HE,HI,HA,NE,NA,NN,FF;
+
+I::=Programa IS FinPrograma;
+I::=Programa FinPrograma;
+IS::=L;
+IS::=L IS;
+
+IS::=C;
+IS::=C IS;
+
+IS::=D;
+IS::=D IS;
+
+IS::=H;
+IS::=H IS;
+
+IS::=N;
+IS::=N IS;
+
+IS::=Q;
+IS::=Q IS;
+
+IS::=HA;
+IS::=HA IS;
+
+IS::=NE;
+IS::=NE IS;
+
+IS::=NA;
+IS::=NA IS;
+
+/* Asignacion de valores */
+
+L::= E;
+E::=id asig E pc;
+E::= E op_aritmetico T;
+E::= T;
+T::= num | id;
+T::= pi EL pd;
+
+/* Ciclo */
+C::= mientras pi EL pd hacer IS finmientras;
+EL::= EL ol EA;
+EL::= EA;
+EA::= E op_relacional E;
+EA::= E;
+
+/* Desicion */
+
+D::= si pi EL pd entonces F finsi;
+F::= IS G;
+G::= sino IS;
+G::= ;
+
+/* Str */
+
+Q::= pal W;
+W::= id U pc;
+U::= asig str;
+
+/* Entero */
+
+H::= ent K;
+K::= id M pc;
+M::= asig num;
+
+/* Asignacion multiple*/
+
+N::= ent O;
+O::= id com O;
+O::= id pc;
+
+/* Ciclo for */
+
+HA::= para pi H hasta EA pc HE pd IS finpara;
+HE::= id HI;
+HI::= op_incremento ;
+
+/* Leer */
+
+NE::= leer pi FF pd pc;
+FF::=id com FF;
+FF::=id;
+
+/* Escribir */
+
+NA::= escribir pi NN pd pc;
+NN::= id com NN;
+NN::= str com NN;
+NN::= id;
+NN::= str;
